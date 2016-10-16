@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>SIS</h2>
+
+
+
+<div ng-controller="RetroController as retro">
+    <div>
+        <label>New Retrospective</label>
+        <br />
+        <label>Name:</label>
+        <input type="text" ng-model="retro.Name" placeholder="Retrospective Name" />
+        <br />
+        <label>Summary</label>
+        <input type="text" ng-model="retro.Summary" size="240" placeholder="Summary text"/>
+        <br />
+        <label>Date</label>
+        <input type="text" ng-model="retro.Date" placeholder="Date"/>
+        <br />
+        <label>Participants</label>
+        <ul>
+            <li ng-repeat="participant in retro.Participants">
+                <span>{{participant.text}}</span>
+                
+            </li>
+        </ul>
+
+        <form ng-submit="retro.addParticipant()">           
+            <input type="text" ng-model="retro.ParticipantName" placeholder="Participant Name"/>
+            <input class="btn-primary" type="submit" value="add" />
+        </form>
+        [<a href="" ng-click="retro.Submit()">Save New Retrospective</a>]
+    </div>
+    <hr/>
+    <div>
+        [<a href="" ng-click="retro.ShowAll()">Show All</a>]
+        <br/>
+        <label>Date:</label>
+        <input type="text" ng-model="retro.SearchDate" placeholder="Date" />
+        [<a href="" ng-click="retro.ShowByDate()">Show By Date</a>]
+        <hr/>
+        <ul>
+            <li ng-repeat="rs in retro.allretro">
+                <span>Retrospective</span><br/>
+                <span>Name:{{rs.Name}}</span><br />
+                <span>Summary:{{rs.Summary}}</span><br />
+                <span>Date{{rs.Date}}</span><br />
+                <span>Participants:</span>
+                <ul>
+                    <li ng-repeat="participant in rs.Participants">
+                        <span>{{participant}}</span>
+                    </li>
+                </ul>
+                <span>Feedback:</span>
+                <ul>
+                    <li ng-repeat="feedback in rs.Feedback">
+                        <span>{{feedback.Name}}</span>
+                        <span>{{feedback.Body}}</span>
+                        <span>{{feedback.Type}}</span>
+                    </li>
+                </ul>
+                <hr/>
+
+            </li>
+        </ul>
+
+    </div>
+    <hr/>
+    <div>
+        <label>Feedback</label>
+        <br />
+        <label>Name of existing Retrospective:</label>
+        <input type="text" ng-model="retro.FeedbackRetroName" placeholder="Retrospective Name" />
+        <br />
+        <label>User Name</label>
+        <input type="text" ng-model="retro.FeedbackName" size="240" placeholder="Summary text" />
+        <br />
+        <label>Body</label>
+        <input type="text" ng-model="retro.FeedbackBody" placeholder="Date" />
+        <br />
+        <label>Feedback Type</label>
+        <input type="text" ng-model="retro.FeedbackType" placeholder="Date" />
+        <br />
+        [<a href="" ng-click="retro.Feedback()">Add Feedback</a>]
+    </div>
+
+
+    <h1>Result of operation {{retro.result}}</h1>
+
+
+
+    
+</div>
+
